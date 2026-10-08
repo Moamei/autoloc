@@ -22,4 +22,6 @@ public class Maintenance {
     long idMaintenance;
     LocalDate  dateDebut, dateFin;
     String description;
+    @ManyToOne
+    private Vehicule vehicule;
 }

@@ -7,6 +7,11 @@ import lombok.Setter;
 import java.util.Date;
 import tn.esprit.autoloc.domain.enums.CategorieVehicule;
 import tn.esprit.autoloc.domain.enums.StatutVehicule;
+import jakarta.persistence.*;
+import lombok.*;
+import java.math.BigDecimal;
+import java.time.LocalDate;
+import java.util.*;
 
 import java.math.BigDecimal;
 @Entity
@@ -29,5 +34,6 @@ public class Client {
     String telephone;
     int numPermis;
     Date dateInscription;
-
+    @OneToMany(mappedBy = "client")
+    private List<Reservation> reservations = new ArrayList<>();
 }

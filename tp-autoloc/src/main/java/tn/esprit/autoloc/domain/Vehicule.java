@@ -6,6 +6,11 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 import tn.esprit.autoloc.domain.enums.CategorieVehicule;
 import tn.esprit.autoloc.domain.enums.StatutVehicule;
+import jakarta.persistence.*;
+import lombok.*;
+import java.math.BigDecimal;
+import java.time.LocalDate;
+import java.util.*;
 
 import java.math.BigDecimal;
 @Entity
@@ -24,4 +29,17 @@ public class Vehicule {
     private CategorieVehicule categorie;
     private BigDecimal tarifJournalier;
     private StatutVehicule statut;
+    @ManyToOne
+    private Agence agence;
+
+    @OneToMany(mappedBy = "vehicule")
+    private List<Reservation> reservations = new ArrayList<>();
+
+    @OneToMany(mappedBy = "vehicule", cascade = CascadeType.ALL)
+    private List<Maintenance> maintenances = new ArrayList<>();
+
+    // Côté propriétaire du ManyToMany -> table vehicule_equipements (nom généré par défaut)
+    @ManyToMany
+    private List<Equipement> equipements = new ArrayList<>();
+
 }

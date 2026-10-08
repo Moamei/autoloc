@@ -9,6 +9,11 @@ import tn.esprit.autoloc.domain.enums.CategorieVehicule;
 import tn.esprit.autoloc.domain.enums.StatutVehicule;
 
 import java.math.BigDecimal;
+import jakarta.persistence.*;
+import lombok.*;
+import java.math.BigDecimal;
+import java.time.LocalDate;
+import java.util.*;
 @Entity
 @Getter
 @Setter
@@ -24,4 +29,10 @@ public class Contrat {
     Date dateSignature;
     int montantTotal;
     boolean valide;
+    @OneToOne
+    private Reservation reservation;
+
+
+    @OneToMany(mappedBy = "contrat", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<paiement> paiements = new ArrayList<>();
 }

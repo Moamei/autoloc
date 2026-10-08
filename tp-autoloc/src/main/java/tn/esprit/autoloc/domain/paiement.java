@@ -27,7 +27,8 @@ public class paiement {
     BigDecimal montant;
     LocalDate datePaiement;
     private ModePaiement modePaiement;
-
+    @ManyToOne
+    private Contrat contrat;
 
 
 }

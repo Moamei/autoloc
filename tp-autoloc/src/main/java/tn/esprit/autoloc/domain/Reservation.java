@@ -8,7 +8,7 @@ import tn.esprit.autoloc.domain.enums.CategorieVehicule;
 import tn.esprit.autoloc.domain.enums.StatutReservation;
 import tn.esprit.autoloc.domain.enums.StatutVehicule;
 
-import java.math.BigDecimal;
+
 @Entity
 @Table(name = "reservation")
 @Getter
@@ -23,4 +23,14 @@ public class Reservation {
     String dateFin;
     @Enumerated(EnumType.STRING)
     private StatutReservation statutReservation;
+
+    @ManyToOne
+    private Client client;
+
+    @ManyToOne
+    private Vehicule vehicule;
+
+    // Côté inverse : la FK est dans Contrat
+    @OneToOne(mappedBy = "reservation", cascade = CascadeType.ALL)
+    private Contrat contrat;
 }
